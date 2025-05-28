@@ -7,10 +7,10 @@ function App() {
     <div>
       {alertVisibility && (
         <Alert onClick={() => setAlertVisibility(false)}>
-          click to make alert visible
+          Alert!
         </Alert>
       )}
-      <Button children="dynamic" onClose={() => setAlertVisibility(true)} />
+      <Button children="click to make alert visible" onClose={() => setAlertVisibility(true)} />
     </div>
   );
 }
