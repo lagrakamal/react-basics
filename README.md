@@ -275,5 +275,61 @@ const [alertVisibility, setAlertVisibility] = useState(false);
 
 ---
 
+## ✋ onClose – Events via Props nach oben reichen
+
+Wir möchten dem übergeordneten Komponenten erlauben, auf Ereignisse zu reagieren, die in der Kindkomponente (z. B. `Button`) stattfinden. Dafür übergeben wir eine Funktion über Props, die in der Kindkomponente aufgerufen wird.
+
+### 🔹 Button.tsx
+
+```tsx
+interface Props {
+  children: string;
+  color?: "primary" | "danger" | "success";
+  onClose: () => void;
+}
+
+const Button = ({ children, color = "primary", onClose }: Props) => {
+  return (
+    <button type="button" className={"btn btn-" + color} onClick={onClose}>
+      {children}
+    </button>
+  );
+};
+
+export default Button;
+```
+
+---
+
+### 🔸 App.tsx mit Alert und Button
+
+```tsx
+import { useState } from "react";
+import Alert from "./componenets/Alert";
+import Button from "./componenets/Button";
+
+function App() {
+  let [alertVisibility, setAlertVisibility] = useState(false);
+
+  return (
+    <div>
+      {alertVisibility && (
+        <Alert onClick={() => setAlertVisibility(false)}>
+          click to make alert visible
+        </Alert>
+      )}
+      <Button children="dynamic" onClose={() => setAlertVisibility(true)} />
+    </div>
+  );
+}
+
+export default App;
+```
+
+In diesem Beispiel:
+
+- `onClose` wird über Props an `Button` übergeben.
+- Beim Klick ruft `Button` die Funktion auf (`setAlertVisibility(true)`).
+- So wird aus der Kindkomponente (`Button`) eine Aktion an die Elternkomponente (`App`) kommuniziert.
 
 
