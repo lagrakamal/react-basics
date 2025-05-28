@@ -1,5 +1,5 @@
 
-# 🧠 React Basics
+# React Basics
 
 Dies ist mein persönliches Lernprojekt, um die Grundlagen von **React** Schritt für Schritt zu verstehen und zu üben.
 
